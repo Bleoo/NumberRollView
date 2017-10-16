@@ -27,7 +27,7 @@ public class NumberRollView extends View {
     private Paint mPaint;
     public boolean isLiked;
 
-    private OnLikeChangedListener linster;
+    private OnLikeChangedListener listener;
 
     public NumberRollView(Context context) {
         super(context);
@@ -72,7 +72,7 @@ public class NumberRollView extends View {
                     addOne();
                 }
                 isLiked = !isLiked;
-                linster.OnLikeChanged(isLiked);
+                listener.OnLikeChanged(isLiked);
             }
         });
     }
@@ -93,7 +93,8 @@ public class NumberRollView extends View {
         if (specMode == MeasureSpec.EXACTLY) {
             result = specSize;
         } else {
-            result = (int) mPaint.measureText(String.valueOf(number)) + getPaddingLeft() + getPaddingRight();
+            // * 10 为了增长一位，避免 999 -> 1000 的问题
+            result = (int) mPaint.measureText(String.valueOf(number * 10)) + getPaddingLeft() + getPaddingRight();
             if (specMode == MeasureSpec.AT_MOST) {
                 result = Math.min(result, specSize);
             }
@@ -129,6 +130,7 @@ public class NumberRollView extends View {
         String newStr = String.valueOf(number);
 
         int diffIndex = 0;
+        // 找出数值开始不同的位置
         if (oldStr.length() == newStr.length()) {
             for (int i = 0; i < oldStr.length(); i++) {
                 if (oldStr.charAt(i) != newStr.charAt(i)) {
@@ -140,6 +142,7 @@ public class NumberRollView extends View {
 
         float frontWidth = 0;
 
+        // 绘制数值的相同部分
         if (diffIndex != 0) {
             String frontStr = oldStr.substring(0, diffIndex);
 
@@ -152,6 +155,7 @@ public class NumberRollView extends View {
         String oldBackStr = oldStr.substring(diffIndex);
         String newBackStr = newStr.substring(diffIndex);
 
+        // 绘制数值的不同部分
         if (number > number_old) {
             mPaint.setAlpha((int) (progress * 255));
             canvas.drawText(oldBackStr, frontWidth, ascent + ascent * progress, mPaint);
@@ -184,6 +188,7 @@ public class NumberRollView extends View {
     public void setNumber(int number){
         this.number_old = this.number;
         this.number = number;
+        requestLayout();
     }
 
     public int getNumber() {
@@ -196,7 +201,7 @@ public class NumberRollView extends View {
     }
 
     public void setOnLikeChangedListener(OnLikeChangedListener linster) {
-        this.linster = linster;
+        this.listener = linster;
     }
 
     interface OnLikeChangedListener {

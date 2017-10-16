@@ -4,19 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:gravity="center"
+    android:orientation="vertical"
     tools:context="io.github.bleoo.numberroll.MainActivity">
 
-    <ImageView
-        android:id="@+id/iv_like"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@mipmap/ic_like_normal"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <io.github.bleoo.numberroll.NumberRollView
-        android:id="@+id/nrv_like"
+        <ImageView
+            android:id="@+id/iv_like"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/ic_like_normal" />
+
+        <io.github.bleoo.numberroll.NumberRollView
+            android:id="@+id/nrv_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:number="999" />
+
+    </LinearLayout>
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:number="109" />
+        android:onClick="set999"
+        android:text="设置999" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="setRandom"
+        android:text="设置随机数" />
 </LinearLayout>

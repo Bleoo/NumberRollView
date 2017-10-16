@@ -6,6 +6,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,5 +47,13 @@ public class MainActivity extends AppCompatActivity {
                 animatorSet.start();
             }
         });
+    }
+
+    public void set999(View v){
+        nrv_like.setNumber(999);
+    }
+
+    public void setRandom(View v){
+        nrv_like.setNumber((int) (Math.random() * 1000));
     }
 }
