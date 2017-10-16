@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center"
+    tools:context="io.github.bleoo.numberroll.MainActivity">
+
+    <ImageView
+        android:id="@+id/iv_like"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@mipmap/ic_like_normal"/>
+
+    <io.github.bleoo.numberroll.NumberRollView
+        android:id="@+id/nrv_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:number="109" />
+</LinearLayout>

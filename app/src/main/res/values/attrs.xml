@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="number" format="integer|reference" />
+    <declare-styleable name="NumberRollView">
+        <attr name="number" />
+    </declare-styleable>
+</resources>
